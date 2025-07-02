@@ -6,13 +6,11 @@ func returnFromCall(insn uint16, cpu *cpu, sys *System) {
 
 func jump(insn uint16, cpu *cpu, sys *System) {
 	cpu.programCounter = insn & 0x0FFF
-	cpu.unskip()
 }
 
 func call(insn uint16, cpu *cpu, sys *System) {
 	sys.stack.push(cpu.programCounter)
 	cpu.programCounter = insn & 0x0FFF
-	cpu.unskip()
 }
 
 func testVarEqualsByte(cpu *cpu, insn uint16) bool {
@@ -56,5 +54,4 @@ func skipIfVar1NotEqualsVar2(insn uint16, cpu *cpu, sys *System) {
 func jumpWithOffset(insn uint16, cpu *cpu, sys *System) {
 	cpu.programCounter = insn & (0x0FFF)
 	cpu.programCounter += uint16(cpu.variables[0])
-	cpu.unskip()
 }

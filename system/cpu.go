@@ -41,9 +41,8 @@ func (cpu *cpu) cycle(sys *System) {
 		return
 	}
 
-	opcode.interpret(insn, cpu, sys)
-
 	cpu.skip()
+	opcode.interpret(insn, cpu, sys)
 }
 
 func (cpu *cpu) waitForPress(sys *System) {
@@ -95,10 +94,6 @@ func (cpu *cpu) vblank() {
 
 func (cpu *cpu) skip() {
 	cpu.programCounter += 2
-}
-
-func (cpu *cpu) unskip() {
-	cpu.programCounter -= 2
 }
 
 func (cpu *cpu) setCarryFlag() {
